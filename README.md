@@ -2,7 +2,7 @@
 
 ### CRONOGRAMA
 
-[Imagem do cronograma](https://github.com/GustavoAriadno/ETEC-TCC-SuportEcia/tree/master/Documentos/cronograma_tcc.png)
+![Imagem do cronograma](https://github.com/GustavoAriadno/ETEC-TCC-SuportEcia/blob/master/Documentos/cronograma_tcc.png?raw=true)
 
 ### CHANGELOG
 
