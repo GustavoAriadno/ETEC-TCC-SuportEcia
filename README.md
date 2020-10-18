@@ -35,3 +35,7 @@
 ### 04/10/2020
 #### Criamos um template no Trello onde adicionamos o que já fizemos, o que temos que fazer e o que estamos fazendo;
 #### Organizamos os relatórios, decidimos armazenar os documentos no repositório do aplicativo.
+
+### 11/10/2020
+#### Atualizamos o cronograma;
+#### Começamos a decidir como seria feito o sistema OTP dentro do aplicativo.
