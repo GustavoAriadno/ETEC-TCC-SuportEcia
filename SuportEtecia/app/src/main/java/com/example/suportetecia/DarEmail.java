@@ -45,7 +45,7 @@ public class DarEmail extends AppCompatActivity /*implements View.OnClickListene
         Integer init = email.length() - "@etec.sp.gov.br".length();
         if (init < 0)
             return true;
-        if ("@etec.sp.gov.br".compareTo(email.substring(init, "@etec.sp.gov.br".length())) != 0) {
+        if ("@etec.sp.gov.br".compareTo(email.substring(init)) != 0) {
             return true;
         }
         String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
