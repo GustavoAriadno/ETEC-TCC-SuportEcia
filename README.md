@@ -39,3 +39,7 @@
 ### 11/10/2020
 #### Atualizamos o cronograma;
 #### Começamos a decidir como seria feito o sistema OTP dentro do aplicativo.
+
+### 02/11/2020
+#### API quase concluída;
+#### API de codigo de barras funcionando;
