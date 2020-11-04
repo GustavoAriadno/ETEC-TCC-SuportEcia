@@ -41,5 +41,9 @@
 #### Começamos a decidir como seria feito o sistema OTP dentro do aplicativo.
 
 ### 02/11/2020
-#### API quase concluída;
+#### API de OTP em andamento;
 #### API de codigo de barras funcionando;
+
+## 04/11/2020
+#### Foi decidido que a conexão será realizada em localhost até o fim do distanciamento social, já que o servidor da etec está desativado;
+#### Descartamos a opção do usuário definir a prioridade do problema, visto que é uma função da equipe de manutenção.
