@@ -8,29 +8,98 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class InsertPassCode extends AppCompatActivity {
 
+    EditText editText;
     Button scanBtn;
+    TextView textView;
+    private RequestQueue mQueue;
+
+    String fullHash;
+    String userEmail;
+    String otp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_pass_code);
 
-        // Check OTP
+        mQueue = Volley.newRequestQueue(getApplicationContext());
+        fullHash = getIntent().getStringExtra("FULL_HASH");
+        userEmail = getIntent().getStringExtra("USER_EMAIL");
 
+        textView = findViewById(R.id.tvShow);
+        editText = findViewById(R.id.txtPassCode);
         scanBtn = findViewById(R.id.btnScan);
         scanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                scanCode();
+//                textView.setText(fullHash);
+                otp = editText.getText().toString().trim();
+//              Check OTP
+                checkOtp(otp, userEmail, fullHash);
             }
         });
+    }
+
+    private void checkOtp(final String otp, final String userEmail, final String fullHash) {
+        String url = "https://suportecia.herokuapp.com/public/verifyotp";
+//      Define request body
+        Map<String, String> reqBody = new HashMap<String, String>();
+        reqBody.put("otp", otp);
+        reqBody.put("email", userEmail);
+        reqBody.put("fullHash", fullHash);
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(reqBody),
+            new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        preStartScan(response.getInt("status"));
+                    } catch (JSONException e) {
+                        textView.append("n funfou ");
+                        Toast.makeText(getApplicationContext(), "n funfo", Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+        });
+        mQueue.add(request);
+    }
+
+    private void preStartScan(int status) {
+        if (status == 1) {
+            scanCode();
+        } else if (status == 0) {
+            editText.setError("Sua senha passe expirou");
+            editText.requestFocus();
+        } else {
+            editText.setError("Sua senha passe esta incorreta");
+            editText.requestFocus();
+        }
     }
 
     private void scanCode() {
