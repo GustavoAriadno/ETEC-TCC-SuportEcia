@@ -71,7 +71,7 @@
                 android:layout_marginBottom="18dp"/>
 
             <Button
-                android:id="@+id/btnContinuar"
+                android:id="@+id/btnSendTicket"
                 android:layout_width="125dp"
                 android:layout_height="38dp"
                 android:layout_gravity="center"
