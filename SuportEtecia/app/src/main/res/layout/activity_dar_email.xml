@@ -45,7 +45,7 @@
                 android:background="@drawable/editback"
                 android:hint="ex: fulano@etec.sp.gov.br"
                 android:inputType="textEmailAddress"
-                android:paddingLeft="8dp" />
+                android:paddingHorizontal="8dp" />
 
             <Button
                 android:id="@+id/btnContinuar"
