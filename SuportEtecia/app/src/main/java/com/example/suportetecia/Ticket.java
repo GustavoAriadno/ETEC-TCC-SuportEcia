@@ -41,6 +41,7 @@ public class Ticket extends AppCompatActivity {
 
         mQueue = Volley.newRequestQueue(getApplicationContext());
 
+//  collecting user and machine data.
         local = getIntent().getStringExtra("MAQUINA_LOCAL");
         sigla = getIntent().getStringExtra("MAQUINA_SIGLA");
         userEmail = getIntent().getStringExtra("USER_EMAIL");
@@ -67,6 +68,7 @@ public class Ticket extends AppCompatActivity {
         });
     }
 
+//  Sending data to the site.
     private void createTicket(String problema, String userEmailM, String siglaM) {
         String url = "http://suportecia.herokuapp.com/public/chamado";
         //      Define request body

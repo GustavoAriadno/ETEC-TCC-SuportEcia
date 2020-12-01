@@ -52,6 +52,7 @@ public class InsertPassCode extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 otp = editText.getText().toString().trim();
+
 //              Check OTP
                 checkOtp(otp, userEmail, fullHash);
             }
@@ -60,6 +61,7 @@ public class InsertPassCode extends AppCompatActivity {
 
     private void checkOtp(final String otp, final String userEmail, final String fullHash) {
         String url = "https://suportecia.herokuapp.com/public/verifyotp";
+
 //      Define request body
         Map<String, String> reqBody = new HashMap<String, String>();
         reqBody.put("otp", otp);
@@ -98,6 +100,7 @@ public class InsertPassCode extends AppCompatActivity {
         }
     }
 
+//  integrating scanner API
     private void scanCode() {
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setCaptureActivity(CaptureAct.class);
@@ -106,6 +109,8 @@ public class InsertPassCode extends AppCompatActivity {
         integrator.setPrompt("Scaneie o codigo de barras");
         integrator.initiateScan();
     }
+
+//  Validating scanned code
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
@@ -122,6 +127,7 @@ public class InsertPassCode extends AppCompatActivity {
 
     private void parseRetCode(String retCode) {
         String url = "https://suportecia.herokuapp.com/public/equipamentos/sigla";
+
 //      Define request body
         Map<String, String> reqBody = new HashMap<String, String>();
         reqBody.put("sigla", retCode);
@@ -152,6 +158,7 @@ public class InsertPassCode extends AppCompatActivity {
         mQueue.add(request);
     }
 
+//  showing scan result
     private void alDialog(final String local, final String sigla) {
         String title = "Escaneado com sucesso!";
         String message = "Prosseguir com " + sigla;
@@ -194,6 +201,7 @@ public class InsertPassCode extends AppCompatActivity {
         dialog.show();
     }
 
+ // Showing class and pc serial to user when scan is valid.
     private void changeAct(String local, String sigla) {
         Intent intent = new Intent(getApplicationContext(), Ticket.class);
         intent.putExtra("MAQUINA_LOCAL", local);

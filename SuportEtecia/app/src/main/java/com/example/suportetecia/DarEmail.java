@@ -48,6 +48,7 @@ public class DarEmail extends AppCompatActivity {
                     txtEmail.setError("Insira um email valido!");
                     txtEmail.requestFocus();
                 } else {
+
 //                  Send Pass Code to user email
                     sendEmail(userEmail);
                 }
@@ -64,6 +65,7 @@ public class DarEmail extends AppCompatActivity {
 
     private void sendEmail(final String userEmail) {
         String url = "https://suportecia.herokuapp.com/public/sendemail";
+
         //      Define request body
         Map<String, String> reqBody = new HashMap<String, String>();
         reqBody.put("email", userEmail);
@@ -87,7 +89,7 @@ public class DarEmail extends AppCompatActivity {
         });
         mQueue.add(request);
     }
-
+//  Validating email
     private boolean isEmailInvalid(String email) {
         if (email.isEmpty())
             return true;
